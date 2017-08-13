@@ -1,10 +1,14 @@
 class UsersController < ApplicationController
     
     def index
-        @users = User.find(params[:id])
-        
-        render("users/index.html.erb")
+        @users = User.all
     end
     
-    
+    def show
+        @user = User.find(params[:id])
+        
+        @photos = @user.photos
+        
+        @comment = Comment.new
+    end
 end

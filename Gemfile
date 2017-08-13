@@ -60,7 +60,6 @@ group :development do
   gem 'meta_request'
   gem 'wdm', platforms: [:mingw, :mswin, :x64_mingw]
 end
-
 group :test do
   gem 'capybara'
   gem 'factory_girl_rails'
