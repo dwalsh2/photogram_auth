@@ -37,8 +37,8 @@
           </a>
   
           <p>
-            <% if photo.fans.pluck(:user_id).include?(:current_user) %>
-              <a href="/delete_like/658" class="btn btn-link">
+            <% if photo.fans.pluck(:user_id).include?(current_user.id) %>
+              <a href="/delete_like/<%= photo.id %>" class="btn btn-link">
                 <i class="fa fa-heart"></i>
               </a>
             <% else %>
