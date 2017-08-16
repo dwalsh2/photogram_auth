@@ -37,16 +37,32 @@
           </a>
   
           <p>
-              <a href="/delete_like/#{photo.like}" class="btn btn-link">
+            <% if photo.fans.pluck(:user_id).include?(:current_user) %>
+              <a href="/delete_like/658" class="btn btn-link">
                 <i class="fa fa-heart"></i>
               </a>
-              <% photo.fans.each do |fan| %>
-                <li>
-                  <% fan.username %>
-                </li>
-              <% end %>
-              like
-              this
+            <% else %>
+              <form action="/create_like" method="post">
+                <!-- Hidden input for authenticity token to protect from forgery -->
+                <input name="authenticity_token" type="hidden" value="73v5nYNAuXAB26t4GuKkNK6s3Uw4agVnrB4BOB72ct3d5M4M7Mer6OS3KnMou0fd7EXtmkFzLZ2Zkemmqhu7vQ==">
+  
+                <input type="hidden" name="photo_id" value="<%= photo.id %>" >
+  
+                <input type="hidden" name="user_id" value="<%= photo.user_id %>" >
+  
+                <button class="btn btn-link">
+                  <i class="fa fa-heart-o"></i>
+                </button>
+              </form>
+            <% end %>
+            
+            <% photo.fans.each do |fan| %>
+              <li>
+                <%= fan.username %>
+              </li>
+            <% end %>
+            like
+            this
           </p>
   
           <% photo.comments.each do |comment| %>

@@ -1,0 +1,20 @@
+          <p>
+            <% if photo.likes.pluck(:user_id).include?(:current_user.id) %>
+              <form action="/delete_like/<%= photo.id %>" method="post" class="btn btn-link"><i class="fa fa-heart"></i>
+            <% else %>
+              <form action="/create_like" method="post" class="btn btn-link"><i class="fa fa-heart-o"></i>
+            <% end %>  
+            
+            <% photo.likes.each do |like| %>
+              <% if like.user == current_user %>
+                <form action="/create_like" method="post" class="btn btn-link">
+              <% else %>
+                
+              <% end %>
+              <%= like.user.username %>
+            <% end %>
+          </p>  
+          
+          
+          
+          user.likes.pluck.user_id
