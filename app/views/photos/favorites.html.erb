@@ -7,7 +7,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">
-            <a href="/users/#{@user.id}"><%= @user.username %></a>
+            <a href="/users/<%= photo.user.id %>"><%= photo.user.username %></a>
             <small>
               <%= photo.updated_at %>
             </small>
@@ -20,8 +20,8 @@
           </a>
   
           <p>
-            <% if photo.fans.pluck(:user_id).include?(:current_user) %>
-              <a href="/delete_like/#{photo.id}" class="btn btn-link">
+            <% if photo.likes.pluck(:user_id).include?(current_user.id) %>
+              <a href="/delete_like/<%= photo.id %>" class="btn btn-link">
                 <i class="fa fa-heart"></i>
               </a>
             <% else %>
@@ -55,7 +55,7 @@
                   <h6 class="media-heading">
                     <a href="/users/<%= comment.user_id %>"><%= comment.user.username %></a>
                     <small>
-                      <%= time_ago_in_words(comment.updated_at) %>
+                      <%= time_ago_in_words(comment.updated_at) %> ago
                     </small>
                   </h6>
                   <%= comment.body %>

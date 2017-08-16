@@ -4,7 +4,7 @@ class PhotosController < ApplicationController
   def favorites
     @photos = current_user.liked_photos
     
-    @user = User.find(params[:id])
+    @comment = Comment.new
     
     render("photos/favorites.html.erb")
   end
